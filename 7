@@ -1,0 +1,51 @@
+def nand(a,b):
+    if a == 1 and b == 1:
+        return 0
+    elif a not in [1,0] and b not in [1,0]:
+        return 'error'
+    else:
+        return 1
+def andgate(a,b):
+    intermediate = nand(a,b)
+    final = nand(intermediate,intermediate)
+    return final
+def notgate(a):
+    final = nand(a,a)
+    return final
+def orgate(a,b):
+    step1 = nand(a,a)
+    step2 = nand(b,b)
+    final = nand(step1,step2)
+    return final
+def norgate(a,b):
+    step1 = nand(a,a)
+    step2 = nand(b,b)
+    step3 = nand(step1,step2)
+    final = nand(step3,step3)
+    return final
+def xorgate(a,b):
+    step1 = nand(a,b)
+    step2 = nand(a,step1)
+    step3 = nand(b,step1)
+    final = nand(step2,step3)
+    return final
+def Final():
+    while True:
+        a = input("Please enter 'AND', 'OR', 'NOT', 'NOR', 'XOR', or please enter # to exit")
+        if a == '#':
+            break
+        if a == 'NOT':
+            w = int(input("Please enter 1 or 0"))
+            print(notgate(w))
+        else:
+            w = int(input("Please enter first parameter"))
+            x = int(input("Please enter second parameter"))
+            if a == 'AND':
+                print('Result: ', andgate(w,x))
+            elif a == 'OR':
+                print('Result: ', orgate(w,x))
+            elif a == 'NOR':
+                print('Result: ', norgate(w,x))
+            elif a == 'XOR':
+                print('Result: ', xorgate(w,x))
+Final()
