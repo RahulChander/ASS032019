@@ -1,0 +1,25 @@
+while True:
+    try:
+        a = int(input('Please enter string of numbers'))
+        break
+    except:
+        print("Error")
+def getListofNumbers(nums):
+    List = []
+    string = ''
+    numberlist = str(nums)
+    for i in numberlist:
+        if i in string or string == '':
+            string += i
+        else:
+            List.append(string)
+            string = i
+    List.append(string)
+    return List
+SplitUp = getListofNumbers(a)
+newstring = ''
+for i in SplitUp:
+    length = len(i)
+    tempstring = str(length) + i[0]
+    newstring += tempstring
+print(newstring)
