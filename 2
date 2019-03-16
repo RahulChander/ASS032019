@@ -1,0 +1,64 @@
+import random
+password=''
+speciallist=['!','.','?','%','+']
+special1=random.choice(speciallist)
+special2=random.choice(speciallist)
+combine=special1+special2
+print(combine)
+colour=input('Enter your favourite colour')
+location=input('Enter your location(city name)')
+animal=input('Enter your favourite animal')
+clist=list(colour)
+clist.append(combine)
+print(clist)
+random.shuffle(clist)
+llist=list(location)
+llist.append(combine)
+alist=list(animal)
+alist.append(combine)
+cstring=''
+lstring=''
+astring=''
+for i in clist:
+    cstring+=i
+for i in llist:
+    lstring+=i
+for i in alist:
+    astring+=i
+password=cstring+lstring+astring
+
+
+
+while len(password)>30 or len(password)<8:
+    clist=[]
+    alist=[]
+    llist=[]
+    password=''
+    speciallist=['!','.','?','%','+']
+    special1=random.choice(speciallist)
+    special2=random.choice(speciallist)
+    combine=special1+special2
+    print(combine)
+    colour=input('Enter your favourite colour')
+    location=input('Enter your location(city name)')
+    animal=input('Enter your favourite animal')
+    clist=list(colour)
+    clist.append(combine)
+    print(clist)
+    random.shuffle(clist)
+    llist=list(location)
+    llist.append(combine)
+    alist=list(animal)
+    alist.append(combine)
+    cstring=''
+    lstring=''
+    astring=''
+    for i in clist:
+        cstring+=i
+    for i in llist:
+        lstring+=i
+    for i in alist:
+        astring+=i
+    password=cstring+lstring+astring
+
+print(password)
