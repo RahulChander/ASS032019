@@ -1,0 +1,82 @@
+points = 0
+
+def morethan10(pw, points):
+    if len(pw) > 10:
+        points += 1
+    return points
+
+def upperlowercase(pw, points):
+    caps = False
+    lower = False
+    for i in pw:
+        if i in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+            caps = True
+        if i in "abcdefghijklmnopqrstuvwxyz":
+            lower = True
+    if caps:
+        points += 1
+    if lower:
+        points += 1
+    return points
+
+def noname(pw, name, points):
+    if str.lower(name) not in str.lower(pw):
+        if str.upper(name) not in str.upper(pw):
+            points += 1
+    return points
+
+def symbolandnumber(pw, points):
+    symbol = False
+    number = False
+    for i in pw:
+        if i in """!@#$%^&*()[]\;',./{}|:"<>?""":
+            symbol = True
+        if i in "0123456789":
+            number = True
+    if symbol and number:
+        points += 1
+    return points
+
+def qwerty(pw,points):
+    keyboard = ["QWERTYUIOP","ASDFGHJKL","ZXCVBNM"]
+    PairCombosList = []
+    for i in keyboard:
+        for j in range(len(i)-1):
+            string = i[j:j+2]
+            string2 = string[::-1]
+            PairCombosList.append(string)
+            PairCombosList.append(string2)
+    for i in range(0,len(pw)-1):
+        checking = pw[i:i+2]
+        if checking.upper() in PairCombosList:
+            points = -1
+    return points
+
+def strongweak(points):
+    if points == 5:
+        return "Strong"
+    elif points in [3,4]:
+        return "Medium"
+    elif points == -1:
+        return 'Weak'
+    else:
+        return "Weak"
+
+def howstrongisurpwordlol():
+    points = 0
+    while True:
+        name = input("Please input your name to use this program (deffos not saving and stealing your password)\n   > ")
+        pw = input("\nPlease input your password\n   > ")
+        points = morethan10(pw, points)
+        points = upperlowercase(pw, points)
+        points = noname(pw, name, points)
+        points = symbolandnumber(pw, points)
+        points = qwerty(pw,points)
+        print("\nYour password strength is "+strongweak(points))
+        print()
+        if strongweak(points) == "Strong":
+            break
+        if points == -1:
+            print('Qwerty consecutive letters cannot be in password')
+
+howstrongisurpwordlol()
