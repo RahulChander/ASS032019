@@ -1,0 +1,32 @@
+print("hello staircase friend")
+height = input("how high do you want your stairs")
+while height == 0:
+    height = input("how high do you want your stairs")
+new = []
+
+def single_stair(height, base):
+    global new
+    if int(height) == int(base):
+        new.append("|")
+        for i in range(base):
+            new.append("_")
+        new.append("_|")
+        print("".join(new))
+    else:
+        if base == 0:
+            print(" _")
+            single_stair(height, base+1)
+        else:
+            new.append("|")
+            for i in range(base):
+                new.append(" ")
+            new.append("|")
+            new.append("_")
+            print("".join(new))
+            new = []
+            single_stair(height, base+1)
+
+
+
+single_stair(height, 0)
+print('These stairs model the glass stairs at the best school in Malaysia (GIS)')
